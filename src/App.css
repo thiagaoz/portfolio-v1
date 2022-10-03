@@ -7,6 +7,10 @@
   --lavander-blue:#B7BFF3;
 }
 
+body{
+  overflow-x:hidden; 
+}
+
 html{
   background-color: black;
 }
@@ -46,6 +50,23 @@ button:active{
   text-shadow: none;
 }
 
+.btn-active{
+  border: solid 1px white;
+  margin: 4px;
+  text-shadow:
+  0 0 7px #fff,
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero),
+  0 0 92px var(--absolut-zero),
+  0 0 142px var(--absolut-zero);
+
+  box-shadow:
+  0 0 7px #fff,
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero),
+  0 0 92px var(--absolut-zero);
+}
+
 .my-name-fadeIn {
   cursor: context-menu;
   animation: fadeIn 5s;
@@ -66,44 +87,27 @@ button:active{
   0 0 142px var(--absolut-zero);
 }
 
-.my-name-fadeOut {
-  cursor: context-menu;
-  animation: fadeOut 5s;
-  color: white;
-  font-style: italic;
-  font-size: 450%;
-
-  position: absolute;
-  top: -50px;
-  left: 50px;
-}
 
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
 
-@keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-}
-
-.my-title-div{
-  position: absolute;
-  top: 30px;
-  right: 16px;
-  width: 500px;
-}
 
 .frontend-dev {
+  position: absolute;
+  width: fit-content;
   cursor: context-menu;
   color: white;
   font-style: italic;
   font-size: 250%;
   font-weight: bold;
-  position: relative;
-  top: -8px;
+
+  top: 2.5%;
+  right: 5%;
   margin: 5px;
+
+  animation: fadeIn 5s;
 
   text-shadow:
   0 0 7px #fff,
@@ -113,35 +117,86 @@ button:active{
   0 0 142px var(--absolut-zero);
 }
 
-.ts-logo, .js-logo, .react-logo{
-  height: auto;
-  max-width: 8%;
-  margin: 3px;
-}
 
 .btn-div{
   position: absolute;
   top: 215px;
-  left: 150px;
+  right: 100%;
+  overflow: hidden;
 
   display: grid;
+  animation: 2s slide-right forwards;
+  animation-delay: 2s;
+  
+}
 
+@keyframes slide-right {
+  from {
+    right: 100%; 
+  }
+  to {
+    right: 70%;
+  }
 }
 
 .my-photo{
   position: absolute;
+  overflow: hidden;
   top: 100px;
   right: 300px;
   z-index: -1;
 
-
   height: auto;
   max-width: 30%;
-  animation: fadeIn 5s;
+  animation: fadeIn 2s;
 }
 
- /* 
- div{
-  border: solid 2px var(--absolut-zero);
+
+.icon{
+  position: absolute;
+  overflow: hidden;
+  top: 80%;
+  left: 100%;   
+  height: auto;
+  max-width: 4%;
+  margin: 3px;
+}
+
+.js-logo {
+  animation: 1s sliding-javascript forwards;
+  animation-delay: 3s;
+}
+
+@keyframes sliding-javascript {
+  from {
+    left: 100%; 
   }
-*/
+  to {
+    left: 56%;
+  }
+}
+
+.ts-logo {
+  animation: 1s sliding-typescript forwards;
+  animation-delay: 3.4s;
+}
+@keyframes sliding-typescript {
+  from {
+    left: 100%; 
+  }
+  to {
+    left: 61%;
+  }
+}
+.react-logo {
+  animation: 1s sliding-react forwards;
+  animation-delay: 3.8s;
+}
+@keyframes sliding-react {
+  from {
+    left: 100%; 
+  }
+  to {
+    left: 66%;
+  }
+}
