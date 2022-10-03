@@ -1,4 +1,147 @@
-.App {
-  text-align: center;
+:root{
+  --raisin-black: #1C1B24;
+  --xiketic: #0C081E;
+  --resoution-blue:#082084;
+  --absolut-zero:#1A49B1;
+  --cool-grey: #858AAB;
+  --lavander-blue:#B7BFF3;
 }
 
+html{
+  background-color: black;
+}
+
+button{
+  background-color: var(--resoution-blue);
+  color: white;
+  border-radius: 5px;
+  padding: 15px 30px 15px;
+  border: none;
+  margin: 5px;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+button:hover{
+  cursor: pointer;
+  border: solid 1px white;
+  margin: 4px;
+  text-shadow:
+  0 0 7px #fff,
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero),
+  0 0 92px var(--absolut-zero),
+  0 0 142px var(--absolut-zero);
+
+  box-shadow:
+  0 0 7px #fff,
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero),
+  0 0 92px var(--absolut-zero);
+}
+
+button:active{
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.my-name-fadeIn {
+  cursor: context-menu;
+  animation: fadeIn 5s;
+  color: white;
+  font-style: italic;
+  font-size: 450%;
+
+  position: absolute;
+  top: -50px;
+  left: 50px;
+
+  text-shadow:
+  0 0 7px #fff,
+ 
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero),
+  0 0 92px var(--absolut-zero),
+  0 0 142px var(--absolut-zero);
+}
+
+.my-name-fadeOut {
+  cursor: context-menu;
+  animation: fadeOut 5s;
+  color: white;
+  font-style: italic;
+  font-size: 450%;
+
+  position: absolute;
+  top: -50px;
+  left: 50px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.my-title-div{
+  position: absolute;
+  top: 30px;
+  right: 16px;
+  width: 500px;
+}
+
+.frontend-dev {
+  cursor: context-menu;
+  color: white;
+  font-style: italic;
+  font-size: 250%;
+  font-weight: bold;
+  position: relative;
+  top: -8px;
+  margin: 5px;
+
+  text-shadow:
+  0 0 7px #fff,
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero),
+  0 0 92px var(--absolut-zero),
+  0 0 142px var(--absolut-zero);
+}
+
+.ts-logo, .js-logo, .react-logo{
+  height: auto;
+  max-width: 8%;
+  margin: 3px;
+}
+
+.btn-div{
+  position: absolute;
+  top: 215px;
+  left: 150px;
+
+  display: grid;
+
+}
+
+.my-photo{
+  position: absolute;
+  top: 100px;
+  right: 300px;
+  z-index: -1;
+
+
+  height: auto;
+  max-width: 30%;
+  animation: fadeIn 5s;
+}
+
+ /* 
+ div{
+  border: solid 2px var(--absolut-zero);
+  }
+*/
