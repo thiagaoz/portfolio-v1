@@ -5,6 +5,9 @@
   --absolut-zero:#1A49B1;
   --cool-grey: #858AAB;
   --lavander-blue:#B7BFF3;
+  --buttonsX: 80%;
+  --childBtnX: 65%;
+  --tabFinalX: 40%;
 }
 
 body{
@@ -19,38 +22,61 @@ button{
   background-color: var(--resoution-blue);
   color: white;
   border-radius: 5px;
-  padding: 15px 30px 15px;
+  width: 200px;
+  padding: 15px 0px 15px;
   border: none;
   margin: 5px;
   font-size: 20px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 2px;
+  -ms-transform: skewX(-10deg);
+  -webkit-transform: skewX(-10deg);
+  transform: skewX(-10deg);
 }
 
 button:hover{
   cursor: pointer;
-  border: solid 1px white;
+  
   margin: 4px;
+
+  background-color: #1A49B1;
   text-shadow:
   0 0 7px #fff,
   0 0 12px var(--absolut-zero),
   0 0 42px var(--absolut-zero),
   0 0 92px var(--absolut-zero),
   0 0 142px var(--absolut-zero);
-
+/*
   box-shadow:
   0 0 7px #fff,
   0 0 12px var(--absolut-zero),
   0 0 42px var(--absolut-zero),
   0 0 92px var(--absolut-zero);
+*/
+  box-shadow: 
+  0 0 10px var(--absolut-zero),
+  0 0 40px var(--absolut-zero),
+  0 0 80px var(--absolut-zero);
 }
 
 button:active{
-  transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+  /*
+  -ms-transform: skewX(-10deg) , translateY(3px);
+  -webkit-transform: skewX(-10deg) , translateY(3px);
+  */
+  transform: translateX(-5px) translateY(5px) skewX(-10deg);
+    
+    
 }
 
 .btn-active{
+  z-index: 2;
+  background-color: #1A49B1;
   border: solid 1px white;
   margin: 4px;
   text-shadow:
@@ -118,53 +144,85 @@ button:active{
 }
 
 
-.btn-div{
+.thiago-btn, .education-btn, .projects-btn{
   position: absolute;
-  top: 215px;
   right: 100%;
-  overflow: hidden;
 
   display: grid;
-  animation: 2s slide-right forwards;
-  animation-delay: 2s;
   
 }
 
-@keyframes slide-right {
+.thiago-btn{
+  top: 35%;
+  animation: 1.5s slide-btn forwards;
+  animation-delay: 1s;
+}
+
+.education-btn{
+  top: 45%;
+  animation: 1.5s slide-btn forwards;
+  animation-delay: 1.4s;
+}
+
+.projects-btn{
+  top: 55%;
+  animation: 1.5s slide-btn forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes slide-btn {
   from {
     right: 100%; 
   }
   to {
-    right: 70%;
-  }
+    right: var(--buttonsX);
+    }
 }
 
-.my-photo{
+
+.photo-blue, .photo-normal, .photo-fixed{
   position: absolute;
   overflow: hidden;
   top: 100px;
-  right: 300px;
+  right: 30%;
   z-index: -1;
 
   height: auto;
   max-width: 30%;
-  animation: fadeIn 2s;
+}
+
+.photo-normal{
+  z-index: 1;
+  animation: fadeOut 0.07s forwards;
+  animation-delay: 3s;
+  animation-iteration-count: 5;
+}
+.photo-blue{
+  animation: fadeIn 0.07s;
+  animation-delay: 3s;
+  animation-iteration-count: 5;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 
 .icon{
   position: absolute;
   overflow: hidden;
-  top: 80%;
+  top: 87%;
   left: 100%;   
   height: auto;
   max-width: 4%;
   margin: 3px;
+  z-index:2 ;
 }
 
 .js-logo {
-  animation: 1s sliding-javascript forwards;
-  animation-delay: 3s;
+  animation: 1s sliding-javascript ease-out forwards;
+  animation-delay: 1.5s;
 }
 
 @keyframes sliding-javascript {
@@ -172,31 +230,186 @@ button:active{
     left: 100%; 
   }
   to {
-    left: 56%;
+    left: 80%;
   }
 }
 
 .ts-logo {
-  animation: 1s sliding-typescript forwards;
-  animation-delay: 3.4s;
+  animation: 1s sliding-typescript ease-out forwards;
+  animation-delay: 1.9s;
 }
 @keyframes sliding-typescript {
   from {
     left: 100%; 
   }
   to {
-    left: 61%;
+    left: 85%;
   }
 }
 .react-logo {
-  animation: 1s sliding-react forwards;
-  animation-delay: 3.8s;
+  animation: 1s sliding-react ease-out forwards;
+  animation-delay: 2.3s;
 }
 @keyframes sliding-react {
   from {
     left: 100%; 
   }
   to {
-    left: 66%;
+    left: 90%;
+  }
+}
+
+.thiago-tab{
+  position: absolute; 
+  top:25%;
+  left: 105%;
+  width: 500px;
+  background-color: #0C081E;
+  border: solid 2px white;
+  box-shadow:
+  0 0 7px #fff,
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero);
+
+  color: white;
+  padding: 10px 20px 10px;
+  font-size: 20px;
+
+}
+
+.enterTab{
+  animation: 1s slidingIn-tab forwards;
+}
+
+.exitTab{
+  animation: 1s slidingOut-tab forwards;
+}
+
+@keyframes slidingIn-tab {
+  from {
+    left: 100%; 
+  }
+  to {
+    left: var(--tabFinalX);;
+  }
+}
+
+@keyframes slidingOut-tab {
+  from {
+    left: var(--tabFinalX);; 
+  }
+  to {
+    left: 104%;
+  }
+}
+
+.fade-in{
+  animation: fadeIn 1s forwards;
+}
+
+.fade-out{
+  animation: fadeOut 1s forwards;
+}
+
+.show{
+  visibility: visible;
+}
+
+.hide{
+  visibility: hidden;
+}
+
+.watcher-btn{
+  animation: expand-watcher 0.2s linear forwards;
+}
+
+.tab-title{
+  text-align: center;
+}
+
+@keyframes expand-watcher {
+  from{
+    right: var(--buttonsX);
+  }
+  to{
+    right: var(--childBtnX);
+  }
+}
+
+.shrink-watcher{
+  animation: shrink-watcher 0.2s linear forwards;
+}
+@keyframes shrink-watcher {
+  from{
+    z-index: 0;
+    right: var(--childBtnX);
+
+  }
+  to{
+    z-index: -1;
+    right: var(--buttonsX);
+  }
+}
+
+.timemanager-btn{
+  animation: expand-timemanager 0.2s linear forwards;
+}
+@keyframes expand-timemanager {
+  from{
+    top: 55%;
+    right:var(--buttonsX);
+  }
+  to{
+    top: 65%; 
+    right: var(--childBtnX);
+  }
+}
+
+.shrink-timemanager{
+  animation: shrink-timemanager 0.2s linear forwards;
+}
+
+@keyframes shrink-timemanager {
+  from{
+    z-index: 0;
+    top: 65%; 
+    right: var(--childBtnX);
+
+  }
+  to{
+    z-index: -1;
+    top: 55%;
+    right: var(--buttonsX);
+  }
+}
+
+.mainevent-btn{
+  animation: expand-mainevent 0.2s linear forwards;
+}
+@keyframes expand-mainevent {
+  from{
+    top: 55%;
+    right: var(--buttonsX);
+  }
+  to{
+    top: 75%; 
+    right: var(--childBtnX);
+  }
+}
+
+.shrink-main{
+  animation: shrink-mainevent 0.2s linear forwards;
+}
+@keyframes shrink-mainevent {
+  from{
+    z-index: 0;
+    top: 75%; 
+    right: var(--childBtnX);
+
+  }
+  to{
+    z-index: -1;
+    top: 55%;
+    right: var(--buttonsX);
   }
 }
