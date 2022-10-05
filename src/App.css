@@ -1,6 +1,6 @@
 :root{
   --raisin-black: #1C1B24;
-  --xiketic: #0C081E;
+  --xiketic: #04061d;
   --resoution-blue:#082084;
   --absolut-zero:#1A49B1;
   --cool-grey: #858AAB;
@@ -11,7 +11,7 @@
 }
 
 body{
-  overflow-x:hidden; 
+  overflow:hidden; 
 }
 
 html{
@@ -144,21 +144,20 @@ button:active{
 }
 
 
-.thiago-btn, .education-btn, .projects-btn{
+.aboutMe-btn, .contact-btn, .projects-btn{
   position: absolute;
   right: 100%;
-
   display: grid;
   
 }
 
-.thiago-btn{
+.aboutMe-btn{
   top: 35%;
   animation: 1.5s slide-btn forwards;
   animation-delay: 1s;
 }
 
-.education-btn{
+.contact-btn{
   top: 45%;
   animation: 1.5s slide-btn forwards;
   animation-delay: 1.4s;
@@ -227,7 +226,7 @@ button:active{
 
 @keyframes sliding-javascript {
   from {
-    left: 100%; 
+    right: -50px; 
   }
   to {
     left: 80%;
@@ -259,12 +258,13 @@ button:active{
   }
 }
 
-.thiago-tab{
+.aboutMe-tab, .contact-tab{
   position: absolute; 
   top:25%;
   left: 105%;
-  width: 500px;
-  background-color: #0C081E;
+  width: 600px;
+  height: 300px;
+  background-color: var(--xiketic);
   border: solid 2px white;
   box-shadow:
   0 0 7px #fff,
@@ -274,9 +274,48 @@ button:active{
   color: white;
   padding: 10px 20px 10px;
   font-size: 20px;
-
+  text-align: justify;
+  text-justify: inter-word;
 }
 
+.flag{
+  width: 40px;
+  height: 27.5px;
+  margin: 1px;
+}
+.flag:hover{
+  cursor: pointer;
+}
+
+
+.contact-tab{
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  height: auto;
+  width: 500px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif  ;
+  letter-spacing: 1px;
+}
+
+.linkedin-logo, .gmail-logo, .github-logo{
+  border-radius: 50%;
+  height: auto;
+  width: 60px;
+  margin: 10px;
+}
+
+.linkedin-logo:hover, .gmail-logo:hover, .github-logo:hover{
+  cursor: pointer;
+  border: solid 1px white;
+  margin: 9px;
+  box-shadow: 
+  0 0 10px var(--absolut-zero),
+  0 0 40px var(--absolut-zero);
+}
+
+.linkedin-logo:active, .gmail-logo:active, .github-logo:active, .img-click:active{
+  transform: translateY(2px);
+}
 .enterTab{
   animation: 1s slidingIn-tab forwards;
 }
@@ -287,19 +326,23 @@ button:active{
 
 @keyframes slidingIn-tab {
   from {
-    left: 100%; 
+    left: 105%;
+    visibility: hidden; 
   }
   to {
     left: var(--tabFinalX);;
+    visibility: visible;
   }
 }
 
 @keyframes slidingOut-tab {
   from {
-    left: var(--tabFinalX);; 
+    left: var(--tabFinalX);
+
   }
   to {
     left: 104%;
+
   }
 }
 
