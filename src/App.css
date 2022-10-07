@@ -1,6 +1,7 @@
 :root{
   --raisin-black: #1C1B24;
   --xiketic: #04061d;
+  --darker-blue:#0b1744;
   --resoution-blue:#082084;
   --absolut-zero:#1A49B1;
   --cool-grey: #858AAB;
@@ -23,8 +24,9 @@ button{
   color: white;
   border-radius: 5px;
   width: 200px;
-  padding: 15px 0px 15px;
-  border: none;
+  
+  padding: 10px 5px 15px;
+  border: transparent;
   margin: 5px;
   font-size: 20px;
   font-weight: bold;
@@ -35,12 +37,16 @@ button{
   -ms-transform: skewX(-10deg);
   -webkit-transform: skewX(-10deg);
   transform: skewX(-10deg);
+
+  box-shadow: 
+    -3px 1px 0px var(--darker-blue),
+    -4px 4px 0px var(--darker-blue);
 }
 
 button:hover{
   cursor: pointer;
   
-  margin: 4px;
+
 
   background-color: #1A49B1;
   text-shadow:
@@ -49,17 +55,14 @@ button:hover{
   0 0 42px var(--absolut-zero),
   0 0 92px var(--absolut-zero),
   0 0 142px var(--absolut-zero);
-/*
-  box-shadow:
-  0 0 7px #fff,
-  0 0 12px var(--absolut-zero),
-  0 0 42px var(--absolut-zero),
-  0 0 92px var(--absolut-zero);
-*/
+
   box-shadow: 
   0 0 10px var(--absolut-zero),
   0 0 40px var(--absolut-zero),
-  0 0 80px var(--absolut-zero);
+  0 0 80px var(--absolut-zero),
+
+  -3px 1px 0px var(--darker-blue),
+  -5px 2px 0px var(--darker-blue);
 }
 
 button:active{
@@ -69,13 +72,13 @@ button:active{
   -ms-transform: skewX(-10deg) , translateY(3px);
   -webkit-transform: skewX(-10deg) , translateY(3px);
   */
-  transform: translateX(-5px) translateY(5px) skewX(-10deg);
-    
-    
+  transform: translateX(-4px) translateY(4px) skewX(-10deg);   
 }
 
-.btn-active{
+
+.btn-active, .btn-active:hover{
   z-index: 2;
+  transform: translateX(-4px) translateY(4px) skewX(-10deg);  
   background-color: #1A49B1;
   border: solid 1px white;
   margin: 4px;
@@ -93,9 +96,9 @@ button:active{
   0 0 92px var(--absolut-zero);
 }
 
-.my-name-fadeIn {
+.my-name{
+  z-index: 2;
   cursor: context-menu;
-  animation: fadeIn 5s;
   color: white;
   font-style: italic;
   font-size: 450%;
@@ -113,6 +116,9 @@ button:active{
   0 0 142px var(--absolut-zero);
 }
 
+.my-name-fadeIn{
+  animation: fadeIn 5s;
+}
 
 @keyframes fadeIn {
   0% { opacity: 0; }
@@ -121,6 +127,7 @@ button:active{
 
 
 .frontend-dev {
+  z-index: 2;
   position: absolute;
   width: fit-content;
   cursor: context-menu;
@@ -147,8 +154,6 @@ button:active{
 .aboutMe-btn, .contact-btn, .projects-btn{
   position: absolute;
   right: 100%;
-  display: grid;
-  
 }
 
 .aboutMe-btn{
@@ -179,7 +184,7 @@ button:active{
 }
 
 
-.photo-blue, .photo-normal, .photo-fixed{
+.photo-blue, .photo-normal{
   position: absolute;
   overflow: hidden;
   top: 100px;
@@ -190,17 +195,19 @@ button:active{
   max-width: 30%;
 }
 
-.photo-normal{
-  z-index: 1;
-  animation: fadeOut 0.07s forwards;
-  animation-delay: 3s;
+.glitch-intro{
+  z-index: 0;
+  opacity: 0;
+  animation: glitch-intro 0.07s forwards;
+  animation-delay: 3.5s;
   animation-iteration-count: 5;
 }
-.photo-blue{
-  animation: fadeIn 0.07s;
-  animation-delay: 3s;
-  animation-iteration-count: 5;
+
+@keyframes glitch-intro {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
+
 
 @keyframes fadeOut {
   0% { opacity: 1; }
@@ -302,12 +309,13 @@ button:active{
   height: auto;
   width: 60px;
   margin: 10px;
+  
 }
 
 .linkedin-logo:hover, .gmail-logo:hover, .github-logo:hover{
   cursor: pointer;
-  border: solid 1px white;
-  margin: 9px;
+  
+  margin: 10px;
   box-shadow: 
   0 0 10px var(--absolut-zero),
   0 0 40px var(--absolut-zero);
@@ -366,16 +374,15 @@ button:active{
   animation: expand-watcher 0.2s linear forwards;
 }
 
-.tab-title{
-  text-align: center;
-}
 
 @keyframes expand-watcher {
   from{
+    top: 55%;
     right: var(--buttonsX);
   }
   to{
     right: var(--childBtnX);
+    top:45%;
   }
 }
 
@@ -386,11 +393,12 @@ button:active{
   from{
     z-index: 0;
     right: var(--childBtnX);
-
+    top:45%;
   }
   to{
     z-index: -1;
     right: var(--buttonsX);
+    top: 55%;
   }
 }
 
@@ -399,11 +407,9 @@ button:active{
 }
 @keyframes expand-timemanager {
   from{
-    top: 55%;
     right:var(--buttonsX);
   }
   to{
-    top: 65%; 
     right: var(--childBtnX);
   }
 }
@@ -415,9 +421,7 @@ button:active{
 @keyframes shrink-timemanager {
   from{
     z-index: 0;
-    top: 65%; 
     right: var(--childBtnX);
-
   }
   to{
     z-index: -1;
@@ -435,7 +439,7 @@ button:active{
     right: var(--buttonsX);
   }
   to{
-    top: 75%; 
+    top: 65%; 
     right: var(--childBtnX);
   }
 }
@@ -444,6 +448,37 @@ button:active{
   animation: shrink-mainevent 0.2s linear forwards;
 }
 @keyframes shrink-mainevent {
+  from{
+    z-index: 0;
+    top: 65%; 
+    right: var(--childBtnX);
+
+  }
+  to{
+    z-index: -1;
+    top: 55%;
+    right: var(--buttonsX);
+  }
+}
+
+.mypage-btn{
+  animation: expand-mypage 0.2s linear forwards;
+}
+@keyframes expand-mypage {
+  from{
+    top: 55%;
+    right: var(--buttonsX);
+  }
+  to{
+    top: 75%; 
+    right: var(--childBtnX);
+  }
+}
+
+.shrink-mypage{
+  animation: shrink-mypage 0.2s linear forwards;
+}
+@keyframes shrink-mypage {
   from{
     z-index: 0;
     top: 75%; 
@@ -455,4 +490,83 @@ button:active{
     top: 55%;
     right: var(--buttonsX);
   }
+}
+
+.tab-header{
+  width: fit-content;
+}
+.tab-title{
+  position: relative;
+  display: inline-block;
+  position: relative;
+  left: 40%;
+  font-style: italic;
+  letter-spacing: 1px;
+
+}
+.watcher-h3{
+  left: 260%;
+}
+.time-h3{
+  left: 130%;
+}
+.main-h3{
+  left:38%;
+}
+.mypage-h3{
+  left: 40%;
+}
+.github-btn{
+  position: absolute;
+  width: 40px;
+  top: 20px;
+  right: 5%;
+}
+
+.icon-on-tab1, .icon-on-tab2, .icon-on-tab3{
+  max-width: 6%;
+  top: 85%;
+}
+.icon-on-tab1{
+  left: 85%;
+}
+.icon-on-tab2{
+  left: 92%;
+}
+.icon-on-tab3{
+  left: 100%;
+}
+
+.loading-text {
+  cursor: context-menu;
+  color: white;
+  font-style: italic;
+  font-size: 300%;
+
+  position: absolute;
+  bottom: -20px;
+  right: 85%;
+
+  text-shadow:
+  0 0 7px #fff,
+ 
+  0 0 12px var(--absolut-zero),
+  0 0 42px var(--absolut-zero),
+  0 0 92px var(--absolut-zero),
+  0 0 142px var(--absolut-zero);
+}
+
+.warning-tab{
+  position: absolute;
+  z-index: 4;
+  left: 20%;
+  width: 400px;
+  height: 200px;
+
+}
+
+.warning-btn{
+  position: relative;
+  left: 23%;
+  top: 1%;
 }
