@@ -6,6 +6,7 @@ import JSLogo from './assets/JS-logo.png';
 import TSLogo from './assets/TS-logo.png';
 import ReactLogo from './assets/react-logo.png';
 import GmailLogo from    './assets/gmail.png';
+import WppLogo from './assets/whatsapp-logo.png';
 import LinkedinLogo from './assets/linkedin.png';
 import GithubLogo from './assets/github-white.png';
 import Brasil from './assets/brasil.png';
@@ -27,10 +28,9 @@ function App() {
   const [mypage, setMyPageBtn] = useState<boolean>(false);
   const [language, setLanguage] = useState<string>('BRA');
   const [load, setLoad] = useState<number>(0);
-
   const [width, setWidth] = useState<number>(window.innerWidth);
-  const [warning, setWarning] = useState<boolean>(true);
-  const badWidth = width <= 1111;
+  
+  const badWidth = width <= 1030;
 
   const handleWindowSizeChange = ()=> {
     setWidth(window.innerWidth);
@@ -42,7 +42,7 @@ function App() {
   const childrenArr: React.Dispatch<React.SetStateAction<boolean>>[] = [setWatcherBtn, setTimeBtn, setMainBtn,
     setMyPageBtn]
 
-  setTimeout(()=>setIntroIsPlaying(false), 4000);
+  setTimeout(()=>setIntroIsPlaying(false), 4300);
 
 
   useEffect(() => {
@@ -56,13 +56,13 @@ function App() {
   },[])
 
   useEffect(()=>{
-    if (load < 100){
+    if (load < 100 && !badWidth){
     const interval = setInterval(()=>{
       setLoad(time => time+1);
     }, 27);
     return ()=>clearInterval(interval);
   }
-  }, [load])
+  }, [load, badWidth])
 
   useEffect(() => {
     if (!projects){
@@ -74,14 +74,15 @@ function App() {
   }, [projects])
 
   useEffect(() => {
-    if (!aboutMe && !contact && !watcher && !timemanager && !mainevent && !mypage){
+    if (!aboutMe && !contact && !watcher && !timemanager && !mainevent && !mypage && !badWidth){
       setPhotoClass('photo-blue fade-in');
     }
-  }, [aboutMe, contact, watcher, timemanager, mainevent, mypage])
+
+  }, [aboutMe, contact, watcher, timemanager, mainevent, mypage, badWidth])
 
   useEffect(()=> {
-    if (introIsPlaying) setPhotoClass('photo-blue glitch-intro')
-  }, [introIsPlaying]);
+    if (introIsPlaying && !badWidth) setPhotoClass('photo-blue glitch-intro')
+  }, [introIsPlaying, badWidth]);
 
   const activeButton = ( setButton:React.Dispatch<React.SetStateAction<boolean>>, 
     arrOfButtons: React.Dispatch<React.SetStateAction<boolean>>[]) => {
@@ -106,14 +107,7 @@ function App() {
 
   return (
     <div className="App">
-      {badWidth && warning?
-      <div className='aboutMe-tab warning-tab'>
-        <p>Essa página ainda não foi otimizada para o tamanho do seu disposito.</p>
-        <p>Desculpe o transtorno.</p>
-        <button className='warning-btn' onClick={()=>setWarning(false)}>OK</button>
-      </div>
-      :null
-}
+
       <h1 className='my-name my-name-fadeIn'>Thiago Vaz </h1>
 
       <span className="frontend-dev">&#60;Frontend Dev /&#62;</span>
@@ -136,8 +130,9 @@ function App() {
         {projects?
           <button className='btn-active projects-btn' onClick={()=>deactiveButton(setProjects)}>PROJETOS</button>
           :
-          <button className='projects-btn' onClick={()=>activeButton(setProjects, buttonsArr)}>PROJECTS</button>
+          <button className='projects-btn' onClick={()=>activeButton(setProjects, buttonsArr)}>PROJETOS</button>
         }
+        {!badWidth?
         <div className={introIsPlaying? 'hide':'show'}>
           <div className="projects-children-div">
             {projects? 
@@ -145,7 +140,7 @@ function App() {
                 <button className={watcher? 'projects-btn watcher-btn btn-active': 'projects-btn watcher-btn'}
                   onClick={watcher? ()=>deactiveButton(setWatcherBtn) : ()=>activeButton(setWatcherBtn, childrenArr) }>Watcher</button>
 
-                <button className={timemanager? 'projects-btn timemanager-btn btn-active': 'projects-btn timemanager-btn'}
+                <button className={timemanager? 'projects-btn  btn-active timemanager-btn': 'projects-btn timemanager-btn'}
                   onClick={timemanager? ()=>deactiveButton(setTimeBtn) : ()=>activeButton(setTimeBtn, childrenArr)}>Time Manager</button>
 
                 <button className={mainevent? 'projects-btn mainevent-btn btn-active': 'projects-btn mainevent-btn'}
@@ -165,10 +160,28 @@ function App() {
             
           </div>
         </div>
+        :
+        <div className={projects? "projects-children-div":'hide-element'}>
+            
+                <button className={watcher? 'projects-btn watcher-btn btn-active': 'projects-btn watcher-btn'}
+                  onClick={watcher? ()=>deactiveButton(setWatcherBtn) : ()=>activeButton(setWatcherBtn, childrenArr) }>Watcher</button>
+
+                <button className={timemanager? 'projects-btn timemanager-btn btn-active': 'projects-btn timemanager-btn'}
+                  onClick={timemanager? ()=>deactiveButton(setTimeBtn) : ()=>activeButton(setTimeBtn, childrenArr)}>Time Manager</button>
+
+                <button className={mainevent? 'projects-btn mainevent-btn btn-active': 'projects-btn mainevent-btn'}
+                  onClick={mainevent? ()=>deactiveButton(setMainBtn) : ()=>activeButton(setMainBtn, childrenArr)}> Main Event</button>
+
+                <button className={mypage? 'projects-btn mypage-btn btn-active': 'projects-btn mypage-btn'}
+                  onClick={mypage? ()=>deactiveButton(setMyPageBtn) : ()=>activeButton(setMyPageBtn, childrenArr)}> Portfólio</button>
+
+          </div>
+        }
       </div>
 
         <img className={photo? 'photo-normal fade-in':'photo-normal fade-out'} src={PhotoNormal} alt='Foto de perfil' />
         <img className={photoClass} src={PhotoBlue} alt='Foto de perfil' />
+
         <h2 className={introIsPlaying? 'loading-text':'loading-text fade-out'}>{load}%</h2>
 
       <div className={introIsPlaying? 'hide':'show'}>
@@ -178,33 +191,40 @@ function App() {
         <img className='img-click flag' src={Usa} alt='Bandeira dos EUA' onClick={()=> setLanguage('USA')} />
           {language==='BRA'?
           <div className='AboutMe-BRA'>
-            <h3 className='tab-title'>Quem sou?</h3>
-            <p>Sou formado em Engenharia Elétrica com ênfase em Computação pela Universidade Federal de Uberlândia (UFU). Apaixonado por linguagens de programação e línguas. Atualmente estudo tecnologias de desenvolvimento Frontend como JavaScript, TypeScript e React.js.</p>
+            <h3 className='tab-title about-title'>Quem sou?</h3>
+            <p>    Sou formado em Engenharia Elétrica com ênfase em Computação pela Universidade Federal de Uberlândia (UFU). Apaixonado por linguagens de programação e línguas. Atualmente estudo tecnologias de desenvolvimento Frontend como JavaScript, TypeScript e React.js.</p>
           </div>:null}
           {language==='FRA'?
           <div className='AboutMe-FRA'>
-            <h3 className='tab-title'>Qui suis-je? </h3>
-            <p>J'ai un diplôme en Ingénierie électrique avec une spécialisation en informatique de l'Universidade Federal de Uberlândia (UFU). Passionné par l'apprentissage de la programmation et des .languages, j'étudie actuellement les technologies de développement Frontend telles que JavaScript, TypeScript et React.js.</p>
+            <h3 className='tab-title about-title'>Qui suis-je? </h3>
+            <p>J'ai un baccalauréat en Ingénierie électrique avec une spécialisation en informatique à l'Université Fédéral d'Uberlândia (UFU). Passionné par l'apprentissage de la programmation et des languages, actuellement j'étudie les technologies de développement Frontend telles que JavaScript, TypeScript et React.js.</p>
           </div>:null}
           {language==='USA'?
           <div className='AboutMe-USA'>
-            <h3 className='tab-title'>Who am I?</h3>
+            <h3 className='tab-title about-title'>Who am I?</h3>
             <p>I have a degree in Electrical Engineering with emphasis in Computer Engineering from the Universidade Federal de Uberlândia (UFU). Passionate about learning languages tor code and speak. I am currently studying Frontend development technologies such as JavaScript, TypeScript and React.js.</p>
           </div>:null}
         </div>
         <div className={contact ? "contact-tab enterTab" : 'contact-tab exitTab'}>
-          
-          <div><img className='gmail-logo' src={GmailLogo} alt='Gmail Logo' 
-            onClick={()=>window.location.href = 'mailto:thiago.vazss@gmail.com'}/></div>
-          <div><p>thiago.vazss@gmail.com</p></div>
-          <div><img className='linkedin-logo' src={LinkedinLogo} alt='Linkedin Logo' 
-            onClick={()=> window.open('https://www.linkedin.com/in/thiago-vaz-877804197/', '_blank')}/></div>
-          <div><p>linkedin.com/in/thiago-vaz-877804197/</p></div>
-          <div><img className='github-logo' src={GithubLogo} alt='GitHub Logo' 
-            onClick={()=> window.open('https://github.com/thiagaoz', "_blank")}/></div>
-          <div><p>github.com/thiagaoz</p></div>
+
+
+            <img className='whatsapp-logo sml-contact-logo' src={WppLogo} alt='Whatsapp logo'></img>
+            <p className='whatsapp-label'>+55 34 99107-8564</p>
+
+            <img className='gmail-logo  sml-contact-logo' src={GmailLogo} alt='Gmail Logo' 
+              onClick={()=>window.location.href = 'mailto:thiago.vazss@gmail.com'}/>
+            <p className='gmail-label'>thiago.vazss@gmail.com</p>
+
+            <img className='linkedin-logo big-contact-logo' src={LinkedinLogo} alt='Linkedin Logo' 
+              onClick={()=> window.open('https://www.linkedin.com/in/thiago-vaz-877804197/', '_blank')}/>
+            <p className='linkedin-label'>linkedin.com/in/thiago-vaz-877804197/</p>
+
+            <img className='github-logo  big-contact-logo' src={GithubLogo} alt='GitHub Logo' 
+              onClick={()=> window.open('https://github.com/thiagaoz', "_blank")}/>
+            <p className='github-label'>github.com/thiagaoz</p>
+
         </div>
-        <div className={ watcher? "aboutMe-tab enterTab" : 'aboutMe-tab exitTab'}>
+        <div className={ watcher? "aboutMe-tab enterTab projects-child-tab" : 'aboutMe-tab exitTab projects-child-tab'}>
           <div className='tab-header'>
             <h3 className='tab-title watcher-h3'>Watcher</h3>
             <img className=' icon icon-on-tab1' src={JSLogo} alt='JavaScript Logo' />
@@ -214,7 +234,7 @@ function App() {
           </div>
           <p>Watcher é um site para organizar filmes e séries. Ele consome a API do The Movie Database (TMDB) para prencher as informações técnicas dos filmes ou séries, mas o processo também pode ser feito de forma manual. É possível realizar CRUD nos itens registrados e ele também faz sugestões aleatórias de o que assitir baseado em nas preferências do usuário. </p>
         </div>
-        <div className={timemanager ? "aboutMe-tab enterTab" : 'aboutMe-tab exitTab'}>
+        <div className={timemanager ? 'aboutMe-tab enterTab  projects-child-tab' : 'aboutMe-tab exitTab  projects-child-tab'}>
         <div className='tab-header'>
             <h3 className='tab-title time-h3'>Time Manager</h3>
             <img className=' icon icon-on-tab1' src={TSLogo} alt='Typescript Logo' />
@@ -224,7 +244,7 @@ function App() {
           </div>
           <p>O objetivo desse projeto foi criar agenda semanal com inserção e edição de tarefas com dia, horário de início e fim. Os maiores desafios foram os testes de conflitos de horários com outras tarefas já cadastradas e tarefas que se estendiam de um dia para o outro</p>
         </div>
-        <div className={ mainevent ? "aboutMe-tab enterTab" : 'aboutMe-tab exitTab'}>
+        <div className={ mainevent ? 'aboutMe-tab enterTab projects-child-tab' : 'aboutMe-tab exitTab projects-child-tab'}>
           <h3 className='tab-title main-h3'>Main Event</h3>
           <img className=' icon icon-on-tab1' src={TSLogo} alt='Typescript Logo' />
           <img className=' icon icon-on-tab2' src={ReactLogo} alt='React.js Logo' /> 
@@ -232,7 +252,7 @@ function App() {
             onClick={()=> window.open('https://github.com/thiagaoz/mainevent', "_blank")}/>
           <p>Main Event é um mini jogo de RPG de turno, no estilo Final Fantasy, Pokemon RED, etc. Até o momento foi implementada a lógica de toda a customização do personagem (pontos de atributos e compra de equipamentos). Próximo passo é implementar o sistema de luta.</p>
         </div>
-        <div className={ mypage ? "aboutMe-tab enterTab" : 'aboutMe-tab exitTab'}>
+        <div className={ mypage ? 'aboutMe-tab enterTab projects-child-tab' : 'aboutMe-tab exitTab  projects-child-tab'}>
           <h3 className='tab-title mypage-h3'>Portfólio</h3>
           <img className=' icon icon-on-tab1' src={TSLogo} alt='Typescript Logo' />
           <img className=' icon icon-on-tab2' src={ReactLogo} alt='React.js Logo' /> 

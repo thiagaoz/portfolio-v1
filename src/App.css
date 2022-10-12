@@ -1,3 +1,11 @@
+/*
+Desktop = 1280 x 720
+Table = 1027 x 768
+Cel = ? x 320
+
+1 celular display
+*/
+
 :root{
   --raisin-black: #1C1B24;
   --xiketic: #04061d;
@@ -7,7 +15,7 @@
   --cool-grey: #858AAB;
   --lavander-blue:#B7BFF3;
   --buttonsX: 80%;
-  --childBtnX: 65%;
+  --childBtnX: calc(var(--buttonsX)  - 220px);
   --tabFinalX: 40%;
 }
 
@@ -286,43 +294,58 @@ button:active{
 }
 
 .flag{
+  position: relative;
   width: 40px;
   height: 27.5px;
   margin: 1px;
+  top: 30px;
+  right: -80%;
+  
 }
 .flag:hover{
   cursor: pointer;
 }
 
-
 .contact-tab{
+  height: 350px;
   display: inline-grid;
   grid-template-columns: auto auto;
-  height: auto;
+  row-gap: 5px;
   width: 500px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif  ;
   letter-spacing: 1px;
 }
 
-.linkedin-logo, .gmail-logo, .github-logo{
+.big-contact-logo, .sml-contact-logo, .github-btn{
+  position: relative;
   border-radius: 50%;
   height: auto;
   width: 60px;
   margin: 10px;
+
   
 }
 
-.linkedin-logo:hover, .gmail-logo:hover, .github-logo:hover{
+.big-contact-logo:hover, .sml-contact-logo:hover, .github-btn:hover{
   cursor: pointer;
   
-  margin: 10px;
   box-shadow: 
   0 0 10px var(--absolut-zero),
   0 0 40px var(--absolut-zero);
 }
 
-.linkedin-logo:active, .gmail-logo:active, .github-logo:active, .img-click:active{
+.big-contact-logo:active, .sml-contact-logo:active{
   transform: translateY(2px);
+}
+.whatsapp-logo:hover, .whatsapp-logo:active{
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+.whatsapp-label, .gmail-label, .linkedin-label, .github-label{
+  position: relative;
+  left: 10px;
+
 }
 .enterTab{
   animation: 1s slidingIn-tab forwards;
@@ -499,11 +522,17 @@ button:active{
   position: relative;
   display: inline-block;
   position: relative;
-  left: 40%;
+  text-align: center;
   font-style: italic;
   letter-spacing: 1px;
 
 }
+.about-title{
+  position: relative;
+  top: -25px;
+  
+}
+/*
 .watcher-h3{
   left: 260%;
 }
@@ -516,6 +545,7 @@ button:active{
 .mypage-h3{
   left: 40%;
 }
+*/
 .github-btn{
   position: absolute;
   width: 40px;
@@ -569,4 +599,419 @@ button:active{
   position: relative;
   left: 23%;
   top: 1%;
+}
+
+/* DESKTOP small screen ============================================================================*/
+@media (max-width: 1150px) 
+{
+  :root{
+    --buttonsX: 83%;
+    --childBtnX: calc(var(--buttonsX)  - 180px);
+    --tabFinalX: 37%;
+  }
+  button{
+    width: 150px;
+    letter-spacing: 1px;
+    font-size: 15px;
+  }
+  .photo-blue, .photo-normal{
+     top: 150px;
+    right: 20%;
+ 
+    max-width: 30%;
+  }
+
+  .aboutMe-tab{
+    width: 500px;
+    height: auto;
+  }
+  .flag{
+    
+    right: -70%;
+  }
+
+}
+
+ /* Tablets design =======================================================================================*/
+
+@media (max-width: 1030px)
+{
+  :root{
+    --buttonsX: 40px;
+    --buttonsY: 120px;
+    --childBtnX: calc(var(--buttonsX)  - 180px);
+    --tabFinalX: 37%;
+  }
+  button{
+    width: 150px;
+    letter-spacing: 1px;
+    font-size: 15px;
+  }
+
+  .my-name{
+    font-size: 300%;   
+    top: -20px;
+    left: 20px;
+    animation: none;
+  }
+
+  .aboutMe-btn, .contact-btn, .projects-btn{
+    top: var(--buttonsY);
+    left: var(--buttonsX);
+  }
+
+  .contact-btn{
+    top: calc( var(--buttonsY) + 50px);
+  }
+  .projects-btn{
+    top: calc( var(--buttonsY) + 100px);
+  }
+
+  
+  .frontend-dev{
+    font-size: 150%;
+    top: 560px;
+    left: 20px;
+    animation: none;
+    
+  }
+  
+  .photo-blue, .photo-normal{
+     top: 150px;
+    right: 20%;
+ 
+    max-width: 30%;
+    animation: none;
+  }
+
+  .photo-normal{
+    display: none;
+  }
+  .aboutMe-tab{
+    width: 500px;
+    height: auto;
+  }
+  .hide-element{
+    display: none;
+  }
+  .watcher-btn, .timemanager-btn, .mainevent-btn, .mypage-btn{
+    left: calc( var(--buttonsX) + 20px);
+    top: calc( var(--buttonsY) + 160px);
+    padding: 5px 10px 5px;
+    width: 150px;
+    font-size: 14px;
+    animation: none;
+  }
+
+  .timemanager-btn{
+    top: calc( var(--buttonsY) + 200px);
+  }
+
+  .mainevent-btn{
+    top: calc( var(--buttonsY) + 240px);
+  }
+  .mypage-btn{
+    top: calc( var(--buttonsY) + 280px);
+  }
+  .aboutMe-tab, .contact-tab{
+    position: absolute;
+    visibility: hidden;
+    top:100px;
+    left: auto;
+    right: 150px;
+    width: 400px;
+    height: 400px;
+    background-color: var(--xiketic);
+    border: solid 2px white;
+    box-shadow:
+    0 0 7px #fff,
+    0 0 12px var(--absolut-zero),
+    0 0 42px var(--absolut-zero);
+  
+    color: white;
+    padding: 10px 20px 10px;
+    font-size: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  .enterTab{
+    animation: 0.05s slidingIn-tab forwards;
+  }
+  
+  .exitTab{
+    animation: 0.05s slidingOut-tab forwards;
+  }
+  @keyframes slidingIn-tab {
+    from{
+      visibility: hidden;
+    }
+    to{
+      visibility: visible;
+    }
+    
+  }
+  @keyframes slidingOut-tab {
+    from{
+      visibility: visible;
+    }
+    to{
+      visibility: hidden;
+    }
+  }
+
+
+  .icon{
+    
+    top: 560px;
+    left: auto;
+    animation: none;
+    max-width: none;
+    width: 30px;
+  }
+
+  .js-logo{
+    right: 90px;
+  }
+  .ts-logo{
+    right: 50px;
+  }
+  .react-logo{
+    right:10px;
+  }
+
+  .icon-on-tab1, .icon-on-tab2, .icon-on-tab3{
+    max-width: none;
+    width: 30px;
+    top: 85%;
+  }
+  .icon-on-tab1{
+    left: 80%;
+  }
+  .icon-on-tab2{
+    left: 90%;
+  }
+  .icon-on-tab3{
+    left: 100%;
+  }
+
+
+  .linkedin-logo, .github-logo{
+    border-radius: 50%;
+    height: auto;
+    width: 60px;
+    margin: 5px;
+    text-align: center;
+    margin:  0px;
+  }
+
+
+  .loading-text{
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .aboutMe-tab, .contact-tab{
+    right: 50px;
+  }
+  .contact-tab{
+    width: 400px;
+  }
+  .photo-blue{
+    max-width: 40%;
+    right: 15%;
+  }
+
+}
+
+@media (max-width: 750px) {
+  .aboutMe-tab, .contact-tab{
+    width: 300px;
+    height: 350px;
+    font-size: 17px;
+  }
+  .contact-tab{
+
+    width: 300px;
+    height: 320px;
+    right: 80px;
+
+  }
+
+  .whatsapp-logo, .gmail-logo{
+    left: -10px;
+  }
+  .whatsapp-label, .gmail-label{
+    top: 10px;
+  }
+
+  
+  .photo-blue{
+    max-width: 40%;
+    right: 15%;
+  }
+  .flag{
+    right: -60%;
+  }
+  .icon-on-tab1{
+    left: 75%;
+  }
+  .icon-on-tab2{
+    left: 87%;
+  }
+
+}
+
+@media (max-width: 630px){
+  .my-name{
+    right: 10%;
+    text-align: center;
+    font-size: 250%;
+    
+  }
+  button{
+    width: 90px;
+    font-size: 70%;
+    padding: 6px 10px 6px;
+  }
+  .aboutMe-btn{
+    top: 12%;
+    left: 5%;
+  }
+  .contact-btn{
+    top: 12%;
+    left: 37%;
+  
+  }
+  .projects-btn{
+    top: 12%;
+    left: 68%;
+  }
+  .watcher-btn, .timemanager-btn, .mainevent-btn, .mypage-btn{
+    left: auto;
+    top: auto;
+    padding: 5px 5px 5px;
+    width: 42%;
+    font-size: 14px;
+  }
+  .watcher-btn{
+    top: 18%;
+    left: 3%;
+  }
+  .timemanager-btn{
+    top: 18%;
+    left: 50%;
+    padding: 5px 4px 5px;
+  }
+  .mainevent-btn{
+    top: 24%;
+    left: 4%;
+  }
+  .mypage-btn{
+    top: 24%;
+    left: 50%;
+  }
+
+  .photo-blue{
+    top: 40%;
+    max-width: none;
+    width: 250px;
+    right: 50%;
+    display: block;
+    margin-right: -125px;
+ 
+  }
+
+  .aboutMe-tab, .contact-tab{
+    position: fixed;
+    width: 220px;
+    top: 180px;
+    right: 50%;
+    left: auto;
+    margin-right: -130px;
+    font-size: 90%;
+  }
+
+  .contact-tab{
+    height: 350px;
+    display: flexbox;
+    grid-template-columns: auto auto;
+    row-gap: 5px;
+    width: 200px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif  ;
+    letter-spacing: 1px;
+  }
+  .whatsapp-logo{
+    left: 125%;
+  }
+  .whatsapp-label{
+    left: 50%;
+    margin-left: -120px;
+    top: 30%;
+  }
+  .gmail-logo{
+    left: 125%;
+    top: -30%;
+  }
+  .gmail-label{
+    left: -25%
+  }
+  
+  .github-label, .linkedin-label{
+    display: none;
+  }
+  .github-logo{
+    left: 40%;
+  }
+  .linkedin-logo{
+    left: 35%;
+  }
+  
+  .projects-child-tab{
+    top: 220px;
+    height: 330px;
+    font-size: 85%;
+  }
+  .github-btn{
+    left: 75%;
+    width: 40px;
+  }
+
+  .flag{
+    position: relative;
+    width: 40px;
+    height: 27.5px;
+    margin: 1px;
+    top: -50px;
+    right: auto;
+    left: 40px;
+  }
+
+  .about-title{
+    left: 50px;
+  }
+
+  .sml-contact-logo{
+    width: 30px;
+  }
+
+  .frontend-dev{
+    left: auto;
+    right: 45%;
+    top: auto;
+    bottom: 10px;
+    
+    font-size: 120%;
+  }
+  .icon{
+    width: 20px;
+    top: auto;
+    bottom: 10px;
+  }
+  .js-logo{
+    right: 63px;
+  }
+  .ts-logo{
+    right: 35px;
+  }
 }
