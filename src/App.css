@@ -925,7 +925,7 @@ button:active{
   .aboutMe-tab, .contact-tab{
     position: fixed;
     width: 220px;
-    top: 180px;
+    top: 30%;
     right: 50%;
     left: auto;
     margin-right: -130px;
@@ -937,24 +937,24 @@ button:active{
     display: flexbox;
     grid-template-columns: auto auto;
     row-gap: 5px;
-    width: 200px;
+    width: 220px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif  ;
     letter-spacing: 1px;
   }
   .whatsapp-logo{
-    left: 125%;
+    left: 140%;
   }
   .whatsapp-label{
     left: 50%;
-    margin-left: -120px;
+    margin-left: -110px;
     top: 30%;
   }
   .gmail-logo{
-    left: 125%;
+    left: 140%;
     top: -30%;
   }
   .gmail-label{
-    left: -25%
+    left: -20%
   }
   
   .github-label, .linkedin-label{
@@ -968,7 +968,7 @@ button:active{
   }
   
   .projects-child-tab{
-    top: 220px;
+    top: 35%;
     height: 330px;
     font-size: 85%;
   }
@@ -996,8 +996,7 @@ button:active{
   }
 
   .frontend-dev{
-    left: auto;
-    right: 45%;
+    left: 5%;
     top: auto;
     bottom: 10px;
     
